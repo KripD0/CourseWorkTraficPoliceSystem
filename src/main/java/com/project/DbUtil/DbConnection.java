@@ -1,4 +1,4 @@
-package DbUtil;
+package com.project.DbUtil;
 
 import org.postgresql.ds.PGSimpleDataSource;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ public class DbConnection {
         dataSource.setServerName("localhost");
         dataSource.setUser("postgres");
         dataSource.setPassword("postgres");
-        dataSource.setDatabaseName("postgres");
+        dataSource.setDatabaseName("traffic_police_information_system");
         dataSource.setPortNumber(5432);
         return dataSource.getConnection();
     }

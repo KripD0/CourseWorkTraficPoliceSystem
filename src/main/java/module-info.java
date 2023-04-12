@@ -1,12 +1,12 @@
-module com.example.courseworktraficpolicesystem {
+module com.project {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires postgresql;
+    requires java.naming;
 
-
-    opens com.example.courseworktraficpolicesystem to javafx.fxml;
-    exports com.example.courseworktraficpolicesystem;
-    exports Controllers;
-    opens Controllers to javafx.fxml;
+    opens com.project to javafx.fxml;
+    exports com.project;
+    exports com.project.Controllers;
+    opens com.project.Controllers to javafx.fxml;
 }
