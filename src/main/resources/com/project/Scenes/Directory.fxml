@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="1600.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controllers.DirectoryController">
+    <children>
+        <AnchorPane layoutY="127.0" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #fafafa;">
+            <children>
+                <Label layoutX="738.0" layoutY="1004.0" text="By: Шатохин">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelMarks" layoutX="63.0" layoutY="118.0" text="1. Марки ТС" textFill="#4770c3">
+                    <font>
+                        <Font name="System Italic" size="40.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelViolations" layoutX="63.0" layoutY="207.0" text="2. Нарушения" textFill="#4770c3">
+                    <font>
+                        <Font name="System Italic" size="40.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelColors" layoutX="63.0" layoutY="301.0" text="3. Цвета" textFill="#4770c3">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelStatus" layoutX="63.0" layoutY="391.0" text="4. Статусы" textFill="#4770c3">
+                    <font>
+                        <Font name="System Italic" size="40.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="225.0" fitWidth="349.0" layoutX="14.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/Cap.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="236.0" fitWidth="297.0" layoutX="1350.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/Wand.png" />
+                    </image>
+                </ImageView>
+            <Label fx:id="labelTypeOfResponsibility" layoutX="63.0" layoutY="480.0" text="5. Виды ответственности" textFill="#4770c3">
+               <font>
+                  <Font name="System Italic" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelRegions" layoutX="63.0" layoutY="566.0" text="6. Регионы" textFill="#4770c3">
+               <font>
+                  <Font name="System Italic" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelGroupOfResponsibility" layoutX="62.0" layoutY="645.0" text="7. Группы ответственности" textFill="#4770c3">
+               <font>
+                  <Font name="System Italic" size="40.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+        <Label layoutX="410.0" layoutY="21.0" text="Меню выбора справочника" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="57.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="imageBack" fitHeight="121.0" fitWidth="124.0" layoutX="149.0" layoutY="2.0" onMouseClicked="#clickOnImageBack" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/Back.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="homeImage" fitHeight="130.0" fitWidth="124.0" layoutX="14.0" onMouseClicked="#clickOnImageHome" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/home.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

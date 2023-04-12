@@ -5,25 +5,34 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class FormController {
-
-    @FXML
-    private ImageView imageBack;
+public class DirectoryController {
 
     @FXML
     private ImageView homeImage;
 
     @FXML
-    private Label labelDriverRegistration;
+    private ImageView imageBack;
 
     @FXML
-    private Label labelRegistrationCars;
+    private Label labelColors;
 
     @FXML
-    private Label labelRegistrationsOfDesicions;
+    private Label labelGroupOfResponsibility;
 
     @FXML
-    private Label labelVewwu;
+    private Label labelMarks;
+
+    @FXML
+    private Label labelRegions;
+
+    @FXML
+    private Label labelStatus;
+
+    @FXML
+    private Label labelTypeOfResponsibility;
+
+    @FXML
+    private Label labelViolations;
 
     @FXML
     private void clickOnImageBack(){

@@ -25,7 +25,7 @@
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelToDirectory" layoutX="63.0" layoutY="207.0" text="2. Открыть меню справочников" textFill="#4770c3">
+            <Label fx:id="labelToDirectory" layoutX="63.0" layoutY="207.0" onMouseClicked="#clickOnLabelDirectory" text="2. Открыть меню справочников" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
@@ -52,5 +52,10 @@
             <Font name="System Bold" size="57.0" />
          </font>
       </Label>
+      <ImageView fitHeight="113.0" fitWidth="172.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/ico.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

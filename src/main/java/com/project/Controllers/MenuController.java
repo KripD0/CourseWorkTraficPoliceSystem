@@ -1,17 +1,8 @@
 package com.project.Controllers;
 
 import com.project.Auxiliary.SceneChanger;
-import com.project.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MenuController {
 
@@ -30,8 +21,15 @@ public class MenuController {
 
     @FXML
     private void clickOnLabelForm(){
+        SceneChanger sceneChanger = new SceneChanger(labelToForms.getScene());
         labelToForms.getScene().getWindow().hide();
-        SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene("Scenes/Forms.fxml");
+    }
+
+    @FXML
+    private void clickOnLabelDirectory(){
+        SceneChanger sceneChanger = new SceneChanger(labelToDirectory.getScene());
+        labelToDirectory.getScene().getWindow().hide();
+        sceneChanger.changeScene("Scenes/Directory.fxml");
     }
 }
