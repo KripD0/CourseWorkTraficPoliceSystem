@@ -16,7 +16,7 @@ public class MenuController {
     private Label labelToReport;
 
     @FXML
-    void initialize(){
+    private void initialize(){
     }
 
     @FXML

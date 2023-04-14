@@ -8,5 +8,6 @@ module com.project {
     opens com.project to javafx.fxml;
     exports com.project;
     exports com.project.Controllers;
+    exports com.project.ClassesForTables;
     opens com.project.Controllers to javafx.fxml;
 }

@@ -27,7 +27,7 @@ public class FormController {
 
     @FXML
     private void clickOnImageBack(){
-        SceneChanger sceneChanger = new SceneChanger(imageBack.getScene());
+        SceneChanger sceneChanger = new SceneChanger();
         imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }

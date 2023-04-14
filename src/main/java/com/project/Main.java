@@ -1,5 +1,6 @@
 package com.project;
 
+import com.project.Auxiliary.SceneChanger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class Main extends Application {
         stage.getIcons().add(ico);
         stage.setScene(scene);
         stage.show();
+        SceneChanger sceneChanger = new SceneChanger(stage, stage.getScene());
     }
 
     public static void main(String[] args) {

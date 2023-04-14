@@ -15,7 +15,7 @@
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelMarks" layoutX="63.0" layoutY="118.0" text="1. Марки ТС" textFill="#4770c3">
+                <Label fx:id="labelMarks" layoutX="63.0" layoutY="118.0" onMouseClicked="#clickOnlabelMarks" text="1. Марки ТС" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>

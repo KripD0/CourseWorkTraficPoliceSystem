@@ -1,5 +1,6 @@
 package com.project.Auxiliary;
 
+import com.project.Controllers.ExeptionController;
 import com.project.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,20 +14,31 @@ import java.util.List;
 
 public class SceneChanger {
 
-    private static List<Scene> scenesList = new ArrayList<>();
+    private static Stage stage;
+    private final static List<Scene> scenesList = new ArrayList<>();
+
+    private final ExeptionController exeptionController = new ExeptionController();
+
+    public SceneChanger(Stage stage, Scene scene){
+        this.stage = stage;
+        scenesList.add(scene);
+    }
 
     public SceneChanger(Scene scene){
         scenesList.add(scene);
-        while(scenesList.size() > 2){
-            scenesList.remove(0);
-        }
+    }
+    public SceneChanger(){
     }
 
     public void changeScene(String nameScene){
+        if(nameScene.equals("Scenes/Menu.fxml")){
+            while (scenesList.size() > 1){
+                scenesList.remove(scenesList.size() - 1);
+            }
+        }
         Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/ico.png");
         try {
             Parent root = FXMLLoader.load(Main.class.getResource(nameScene));
-            Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.getIcons().add(ico);
             stage.show();
@@ -37,8 +49,22 @@ public class SceneChanger {
 
     public void changeScene(){
         Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/ico.png");
+        stage.setScene(scenesList.get(scenesList.size()-1));
+        stage.getIcons().add(ico);
+        stage.show();
+        for (int i = 0; i < 2; i ++){
+            if(scenesList.size() > 1){
+                scenesList.remove(scenesList.size() - 1);
+            }
+        }
+    }
+
+    public void createExeptionScene(String message) throws IOException {
+        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/yzbek.jpg");
+        exeptionController.setMessage(message);
+        Parent root = FXMLLoader.load(Main.class.getResource("Scenes/Exeption.fxml"));
         Stage stage = new Stage();
-        stage.setScene(scenesList.get(scenesList.size()-2));
+        stage.setScene(new Scene(root));
         stage.getIcons().add(ico);
         stage.show();
     }

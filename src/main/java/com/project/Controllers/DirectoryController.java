@@ -35,8 +35,15 @@ public class DirectoryController {
     private Label labelViolations;
 
     @FXML
+    private void clickOnlabelMarks(){
+        SceneChanger sceneChanger = new SceneChanger(labelMarks.getScene());
+        labelMarks.getScene().getWindow().hide();
+        sceneChanger.changeScene("Scenes/Brands.fxml");
+    }
+
+    @FXML
     private void clickOnImageBack(){
-        SceneChanger sceneChanger = new SceneChanger(imageBack.getScene());
+        SceneChanger sceneChanger = new SceneChanger();
         imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }
