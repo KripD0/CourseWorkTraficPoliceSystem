@@ -1,17 +1,17 @@
 package com.project.ClassesForTables;
 
-public class Brand {
+public class Color {
 
     private Integer id;
 
     private String name;
 
-    public Brand(int id, String name) {
+    public Color(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Brand(){}
+    public Color(){}
 
     public int getId() {
         return id;
@@ -28,5 +28,4 @@ public class Brand {
     public void setName(String name) {
         this.name = name;
     }
-
 }

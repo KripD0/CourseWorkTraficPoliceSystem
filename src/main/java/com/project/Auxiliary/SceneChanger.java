@@ -1,5 +1,6 @@
 package com.project.Auxiliary;
 
+import com.project.Controllers.DeleteAndEditController;
 import com.project.Controllers.ExeptionController;
 import com.project.Main;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ public class SceneChanger {
     private static Stage stage;
     private final static List<Scene> scenesList = new ArrayList<>();
 
+    private final DeleteAndEditController deleteAndEditController = new DeleteAndEditController();
     private final ExeptionController exeptionController = new ExeptionController();
 
     public SceneChanger(Stage stage, Scene scene){
@@ -67,5 +68,25 @@ public class SceneChanger {
         stage.setScene(new Scene(root));
         stage.getIcons().add(ico);
         stage.show();
+    }
+
+    public void createDeleteScene(String message) throws IOException {
+        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/yzbek.jpg");
+        deleteAndEditController.setMessage("Вы уверены что хотите удалить\n" + message);
+        Parent root = FXMLLoader.load(Main.class.getResource("Scenes/DeleteAndEditForm.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(ico);
+        stage.showAndWait();
+    }
+
+    public void createEditScene(String beforeUpdate, String afterUpdate) throws IOException{
+        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/yzbek.jpg");
+        deleteAndEditController.setMessage("Вы уверены что хотите изменить \"" + beforeUpdate + "\" на \"" + afterUpdate + "\"");
+        Parent root = FXMLLoader.load(Main.class.getResource("Scenes/DeleteAndEditForm.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(ico);
+        stage.showAndWait();
     }
 }

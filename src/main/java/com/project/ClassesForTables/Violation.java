@@ -1,17 +1,17 @@
 package com.project.ClassesForTables;
 
-public class Brand {
+public class Violation {
 
     private Integer id;
 
     private String name;
 
-    public Brand(int id, String name) {
+    public Violation(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Brand(){}
+    public Violation(){}
 
     public int getId() {
         return id;

@@ -32,7 +32,7 @@
             </Label>
             <Label fx:id="labelToReport" layoutX="63.0" layoutY="301.0" text="3. Открыть меню отчетов" textFill="#4770c3">
                <font>
-                  <Font size="40.0" />
+                  <Font name="System Italic" size="40.0" />
                </font>
             </Label>
             <ImageView fitHeight="225.0" fitWidth="349.0" layoutX="14.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true">

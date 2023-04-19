@@ -6,13 +6,11 @@ import com.project.DbUtil.DbConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-
 import java.io.IOException;
 import java.sql.*;
 
@@ -21,22 +19,6 @@ public class BrandController {
     private final Connection connection = DbConnection.buildConnection();
 
     private final SceneChanger exeptionScene = new SceneChanger();
-
-    @FXML
-    private Button addButton;
-
-    @FXML
-    private Button updateButton;
-    @FXML
-    private Button deleteButton;
-
-    @FXML
-    private TextField deleteBrandField;
-    @FXML
-    private TextField afterUpdateField;
-
-    @FXML
-    private TextField beforeUpdateField;
 
     @FXML
     private TableView<Brand> brandTable;
@@ -49,6 +31,9 @@ public class BrandController {
 
     @FXML
     private TextField brandField;
+
+    @FXML
+    private TextField findField;
 
     @FXML
     private ImageView homeImage;
@@ -65,14 +50,14 @@ public class BrandController {
     }
 
     @FXML
-    private void clickOnImageBack(){
+    private void clickOnImageBack() {
         SceneChanger sceneChanger = new SceneChanger();
         imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome(){
+    private void clickOnImageHome() {
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         homeImage.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Menu.fxml");
@@ -80,73 +65,95 @@ public class BrandController {
 
     @FXML
     private void addBrand() throws SQLException, IOException {
-        if(brandField.getText().replace(" ", "").isEmpty()){
+        if (brandField.getText().replace(" ", "").isEmpty()) {
             exeptionScene.createExeptionScene("Не было заполнено поле для добавления.");
-        }
-        else{
+        } else {
             String addBrand = "INSERT INTO brand(name) VALUES (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(addBrand);
             preparedStatement.setString(1, brandField.getText());
             preparedStatement.executeUpdate();
             loadTable(connection);
+            brandField.clear();
         }
     }
 
     @FXML
     private int deleteBrand() throws SQLException, IOException {
-        if(deleteBrandField.getText().replace(" ", "").isEmpty()){
-            exeptionScene.createExeptionScene("Не было заполнено поле для удаления.");
+        if (brandTable.getSelectionModel().getSelectedItem() == null) {
+            exeptionScene.createExeptionScene("Не было выбрано поле для удаления.");
             return 1;
         }
-        String checkForNull = "SELECT name FROM brand WHERE name = ?";
-        PreparedStatement preparedCheck = connection.prepareStatement(checkForNull);
-        preparedCheck.setString(1, deleteBrandField.getText());
-        ResultSet resultSet = preparedCheck.executeQuery();
-        if(resultSet.next()){
-            String deleteBrand = "DELETE FROM brand WHERE name = ?";
+        Brand brand = brandTable.getSelectionModel().getSelectedItem();
+        exeptionScene.createDeleteScene(brand.getName());
+        while (DeleteAndEditController.isWaiting) {
+        }
+        if (DeleteAndEditController.needDelete) {
+            String deleteBrand = "DELETE FROM brand WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(deleteBrand);
-            preparedStatement.setString(1, deleteBrandField.getText());
+            preparedStatement.setInt(1, brand.getId());
             preparedStatement.executeUpdate();
             loadTable(connection);
-        }
-        else {
-            exeptionScene.createExeptionScene("Элемента с данным именем не было найдено.");
         }
         return 1;
     }
 
     @FXML
     private int updateBrand() throws SQLException, IOException {
-        if(beforeUpdateField.getText().replace(" ", "").isEmpty() || afterUpdateField.getText().replace(" ", "").isEmpty()){
-            exeptionScene.createExeptionScene("Одно или несколько из полей не были заполнены.");
+        if (brandTable.getSelectionModel().getSelectedItem() == null) {
+            exeptionScene.createExeptionScene("Не было выбрано поле для изменения.");
             return 1;
         }
-        String checkForNull = "SELECT name FROM brand WHERE name = ?";
-        PreparedStatement preparedCheck = connection.prepareStatement(checkForNull);
-        preparedCheck.setString(1, beforeUpdateField.getText());
-        ResultSet resultSet = preparedCheck.executeQuery();
-        if(resultSet.next()){
-            String updateBrand = "UPDATE brand SET name = ? WHERE name = ?";
+        if (brandField.getText().isEmpty() || brandField.getText().replace(" ", "") == "") {
+            exeptionScene.createExeptionScene("Поле для изменения не было заполнено.");
+            return 1;
+        }
+        Brand brand = brandTable.getSelectionModel().getSelectedItem();
+        exeptionScene.createEditScene(brand.getName(), brandField.getText());
+        while (DeleteAndEditController.isWaiting) {
+        }
+        if (DeleteAndEditController.needDelete) {
+            String updateBrand = "UPDATE brand SET name = ? WHERE id = ?";
             PreparedStatement preparedUpdate = connection.prepareStatement(updateBrand);
-            preparedUpdate.setString(1, afterUpdateField.getText());
-            preparedUpdate.setString(2, beforeUpdateField.getText());
+            preparedUpdate.setString(1, brandField.getText());
+            preparedUpdate.setInt(2, brand.getId());
             preparedUpdate.executeUpdate();
             loadTable(connection);
         }
-        else {
-            exeptionScene.createExeptionScene("Элемента с данным именем не было найдено.");
-        }
+        brandField.clear();
         return 1;
     }
 
-    private void loadTable(Connection connection) throws SQLException {
+    @FXML
+    private void findByString() throws SQLException{
+        ObservableList<Brand> listBrand = FXCollections.observableArrayList();
+        String getTableBrands = "SELECT * FROM brand WHERE name LIKE ?";
+        String finalString;
+        finalString = "%" + findField.getText().trim() + "%";
+        PreparedStatement preparedStatement = connection.prepareStatement(getTableBrands);
+        preparedStatement.setString(1, finalString);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        brandColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        while (resultSet.next()) {
+            listBrand.add(new Brand(resultSet.getInt(1), resultSet.getString(2)));
+        }
+        brandTable.setItems(listBrand);
+    }
+
+    @FXML
+    private void clearButton() throws SQLException {
+        findField.clear();
+        loadTable(connection);
+    }
+
+    public void loadTable(Connection connection) throws SQLException {
         ObservableList<Brand> listBrand = FXCollections.observableArrayList();
         String getTableBrands = "SELECT * FROM brand";
         PreparedStatement preparedStatement = connection.prepareStatement(getTableBrands);
         ResultSet resultSet = preparedStatement.executeQuery();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        while (resultSet.next()){
+        while (resultSet.next()) {
             listBrand.add(new Brand(resultSet.getInt(1), resultSet.getString(2)));
         }
         brandTable.setItems(listBrand);
