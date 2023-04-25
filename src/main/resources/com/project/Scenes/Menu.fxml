@@ -10,27 +10,27 @@
    <children>
       <AnchorPane layoutY="127.0" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #fafafa;">
          <children>
-            <Label layoutX="738.0" layoutY="1004.0" text="By: Шатохин">
+            <Label layoutX="726.0" layoutY="1008.0" stylesheets="@../Styles/text.css" text="By: Шатохин">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="608.0" layoutY="25.0" text="Главное меню">
+            <Label layoutX="587.0" layoutY="24.0" stylesheets="@../Styles/text.css" text="Главное меню">
                <font>
                   <Font size="58.0" />
                </font>
             </Label>
-            <Label fx:id="labelToForms" layoutX="70.0" layoutY="116.0" onMouseClicked="#clickOnLabelForm" text="1. Открыть меню форм" textFill="#4770c3">
+            <Label fx:id="labelToForms" layoutX="70.0" layoutY="116.0" onMouseClicked="#clickOnLabelForm" stylesheets="@../Styles/label.css" text="1. Открыть меню форм" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelToDirectory" layoutX="63.0" layoutY="207.0" onMouseClicked="#clickOnLabelDirectory" text="2. Открыть меню справочников" textFill="#4770c3">
+            <Label fx:id="labelToDirectory" layoutX="63.0" layoutY="207.0" onMouseClicked="#clickOnLabelDirectory" stylesheets="@../Styles/label.css" text="2. Открыть меню справочников" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelToReport" layoutX="63.0" layoutY="301.0" text="3. Открыть меню отчетов" textFill="#4770c3">
+            <Label fx:id="labelToReport" layoutX="63.0" layoutY="301.0" stylesheets="@../Styles/label.css" text="3. Открыть меню отчетов" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
@@ -47,7 +47,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="318.0" layoutY="14.0" text="Информационная система ГИБДД" textFill="WHITE">
+      <Label layoutX="243.0" layoutY="26.0" stylesheets="@../Styles/text.css" text="Информационная система ГИБДД" textFill="WHITE">
          <font>
             <Font name="System Bold" size="57.0" />
          </font>

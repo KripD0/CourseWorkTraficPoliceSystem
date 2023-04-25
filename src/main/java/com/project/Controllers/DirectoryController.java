@@ -11,9 +11,6 @@ public class DirectoryController {
     private ImageView homeImage;
 
     @FXML
-    private ImageView imageBack;
-
-    @FXML
     private Label labelColors;
 
     @FXML
@@ -37,61 +34,54 @@ public class DirectoryController {
     @FXML
     private void clickOnlabelMarks(){
         SceneChanger sceneChanger = new SceneChanger(labelMarks.getScene());
-        labelMarks.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Brands.fxml");
     }
 
     @FXML
     private void clickOnlabelViolation(){
         SceneChanger sceneChanger = new SceneChanger(labelViolations.getScene());
-        labelViolations.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Violation.fxml");
     }
 
     @FXML
     private void clickOnlabelColor(){
         SceneChanger sceneChanger = new SceneChanger(labelColors.getScene());
-        labelColors.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Colors.fxml");
     }
 
     @FXML
     private void clickOnlabelStatus(){
         SceneChanger sceneChanger = new SceneChanger(labelStatus.getScene());
-        labelStatus.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Status.fxml");
     }
 
     @FXML
     private void clickOnlabelResponsibility(){
-
+        SceneChanger sceneChanger = new SceneChanger(labelTypeOfResponsibility.getScene());
+        sceneChanger.changeScene("Scenes/TypeOfResponsibility.fxml");
     }
 
     @FXML
     private void clickOnlabelRegions(){
         SceneChanger sceneChanger = new SceneChanger(labelRegions.getScene());
-        labelRegions.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Region.fxml");
     }
 
     @FXML
     private void clickOnlabelGroups(){
         SceneChanger sceneChanger = new SceneChanger(labelGroupOfResponsibility.getScene());
-        labelGroupOfResponsibility.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/ResponsibilityGroup.fxml");
     }
 
     @FXML
     private void clickOnImageBack(){
         SceneChanger sceneChanger = new SceneChanger();
-        imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }
 
     @FXML
     private void clickOnImageHome(){
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
-        homeImage.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Menu.fxml");
     }
 }

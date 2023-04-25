@@ -1,12 +1,11 @@
 package com.project.Controllers;
 
 import com.project.Auxiliary.SceneChanger;
-import com.project.ClassesForTables.Color;
+import com.project.ClassesForTables.Violation;
 import com.project.DbUtil.DbConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -23,41 +22,25 @@ public class ColorController {
     private final Connection connection = DbConnection.buildConnection();
 
     private final SceneChanger exeptionScene = new SceneChanger();
-    @FXML
-    private Button addButton;
 
     @FXML
-    private TextField addField;
+    private TextField findField;
 
     @FXML
-    private TextField afterUpdateField;
-
-    @FXML
-    private TextField beforeUpdateField;
-
-    @FXML
-    private TableColumn<Color, String> colorColumn;
-
-    @FXML
-    private Button deleteButton;
-
-    @FXML
-    private TextField deleteField;
+    private TextField violationField;
 
     @FXML
     private ImageView homeImage;
 
     @FXML
-    private TableColumn<Color, Integer> idColumn;
+    private TableColumn<Violation, Integer> idColumn;
 
     @FXML
-    private ImageView imageBack;
+    private TableColumn<Violation, String> colorColumn;
 
     @FXML
-    private Button updateButton;
+    private TableView<Violation> colorTable;
 
-    @FXML
-    private TableView<Color> colorTable;
 
     public ColorController() throws SQLException {
     }
@@ -70,93 +53,109 @@ public class ColorController {
     @FXML
     private void clickOnImageBack(){
         SceneChanger sceneChanger = new SceneChanger();
-        imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }
 
     @FXML
     private void clickOnImageHome(){
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
-        homeImage.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Menu.fxml");
     }
 
+    @FXML
+    private void add() throws SQLException, IOException {
+        if (violationField.getText().replace(" ", "").isEmpty()) {
+            exeptionScene.createExeptionScene("Не было заполнено поле для добавления.");
+        } else {
+            String addBrand = "INSERT INTO color(name) VALUES (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(addBrand);
+            preparedStatement.setString(1, violationField.getText());
+            preparedStatement.executeUpdate();
+            loadTable(connection);
+            violationField.clear();
+        }
+    }
+
+    @FXML
+    private int delete() throws SQLException, IOException {
+        if (colorTable.getSelectionModel().getSelectedItem() == null) {
+            exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
+            return 1;
+        }
+        Violation violation = colorTable.getSelectionModel().getSelectedItem();
+        exeptionScene.createDeleteScene(violation.getName());
+        while (DeleteAndEditController.isWaiting) {
+        }
+        if (DeleteAndEditController.needDelete) {
+            String deleteBrand = "DELETE FROM color WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteBrand);
+            preparedStatement.setInt(1, violation.getId());
+            preparedStatement.executeUpdate();
+            loadTable(connection);
+        }
+        return 1;
+    }
+
+    @FXML
+    private int update() throws SQLException, IOException {
+        if (colorTable.getSelectionModel().getSelectedItem() == null) {
+            exeptionScene.createExeptionScene("Не был выбран элемент для редактирования");
+            return 1;
+        }
+        if (violationField.getText().isEmpty() || violationField.getText().replace(" ", "") == "") {
+            exeptionScene.createExeptionScene("Поле для изменения не было заполнено.");
+            return 1;
+        }
+        Violation violation = colorTable.getSelectionModel().getSelectedItem();
+        exeptionScene.createEditScene(violation.getName(), violationField.getText());
+        while (DeleteAndEditController.isWaiting) {
+        }
+        if (DeleteAndEditController.needDelete) {
+            String updateBrand = "UPDATE color SET name = ? WHERE id = ?";
+            PreparedStatement preparedUpdate = connection.prepareStatement(updateBrand);
+            preparedUpdate.setString(1, violationField.getText());
+            preparedUpdate.setInt(2, violation.getId());
+            preparedUpdate.executeUpdate();
+            loadTable(connection);
+        }
+        violationField.clear();
+        return 1;
+    }
+
+    @FXML
+    private void findByString() throws SQLException{
+        ObservableList<Violation> list = FXCollections.observableArrayList();
+        String getTableBrands = "SELECT * FROM color WHERE name LIKE ?";
+        String finalString;
+        finalString = "%" + findField.getText().trim() + "%";
+        PreparedStatement preparedStatement = connection.prepareStatement(getTableBrands);
+        preparedStatement.setString(1, finalString);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colorColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        while (resultSet.next()) {
+            list.add(new Violation(resultSet.getInt(1), resultSet.getString(2)));
+        }
+        colorTable.setItems(list);
+    }
+
+    @FXML
+    private void clearButton() throws SQLException {
+        findField.clear();
+        loadTable(connection);
+    }
+
     private void loadTable(Connection connection) throws SQLException {
-        ObservableList<Color> listColor = FXCollections.observableArrayList();
+        ObservableList<Violation> listViolation = FXCollections.observableArrayList();
         String getTableBrands = "SELECT * FROM color";
         PreparedStatement preparedStatement = connection.prepareStatement(getTableBrands);
         ResultSet resultSet = preparedStatement.executeQuery();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         colorColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         while (resultSet.next()){
-            listColor.add(new Color(resultSet.getInt(1), resultSet.getString(2)));
+            listViolation.add(new Violation(resultSet.getInt(1), resultSet.getString(2)));
         }
-        colorTable.setItems(listColor);
+        colorTable.setItems(listViolation);
     }
-
-    @FXML
-    private void addBrand() throws SQLException, IOException {
-        if(addField.getText().replace(" ", "").isEmpty()){
-            exeptionScene.createExeptionScene("Не было заполнено поле для добавления.");
-        }
-        else{
-            String addBrand = "INSERT INTO color(name) VALUES (?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(addBrand);
-            preparedStatement.setString(1, addField.getText());
-            preparedStatement.executeUpdate();
-            loadTable(connection);
-            addField.clear();
-        }
-    }
-
-    @FXML
-    private int deleteBrand() throws SQLException, IOException {
-        if(deleteField.getText().replace(" ", "").isEmpty()){
-            exeptionScene.createExeptionScene("Не было заполнено поле для удаления.");
-            return 1;
-        }
-        String checkForNull = "SELECT name FROM color WHERE name = ?";
-        PreparedStatement preparedCheck = connection.prepareStatement(checkForNull);
-        preparedCheck.setString(1, deleteField.getText());
-        ResultSet resultSet = preparedCheck.executeQuery();
-        if(resultSet.next()){
-            String deleteBrand = "DELETE FROM color WHERE name = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(deleteBrand);
-            preparedStatement.setString(1, deleteField.getText());
-            preparedStatement.executeUpdate();
-            loadTable(connection);
-            deleteField.clear();
-        }
-        else {
-            exeptionScene.createExeptionScene("Элемента с данным именем не было найдено.");
-        }
-        return 1;
-    }
-
-    @FXML
-    private int updateBrand() throws SQLException, IOException {
-        if(beforeUpdateField.getText().replace(" ", "").isEmpty() || afterUpdateField.getText().replace(" ", "").isEmpty()){
-            exeptionScene.createExeptionScene("Одно или несколько из полей не были заполнены.");
-            return 1;
-        }
-        String checkForNull = "SELECT name FROM color WHERE name = ?";
-        PreparedStatement preparedCheck = connection.prepareStatement(checkForNull);
-        preparedCheck.setString(1, beforeUpdateField.getText());
-        ResultSet resultSet = preparedCheck.executeQuery();
-        if(resultSet.next()){
-            String updateBrand = "UPDATE color SET name = ? WHERE name = ?";
-            PreparedStatement preparedUpdate = connection.prepareStatement(updateBrand);
-            preparedUpdate.setString(1, afterUpdateField.getText());
-            preparedUpdate.setString(2, beforeUpdateField.getText());
-            preparedUpdate.executeUpdate();
-            loadTable(connection);
-            afterUpdateField.clear();
-            beforeUpdateField.clear();
-        }
-        else {
-            exeptionScene.createExeptionScene("Элемента с данным именем не было найдено.");
-        }
-        return 1;
-    }
-
 }
+

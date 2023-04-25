@@ -28,14 +28,12 @@ public class FormController {
     @FXML
     private void clickOnImageBack(){
         SceneChanger sceneChanger = new SceneChanger();
-        imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }
 
     @FXML
     private void clickOnImageHome(){
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
-        homeImage.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Menu.fxml");
     }
 }

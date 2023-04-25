@@ -52,14 +52,12 @@ public class BrandController {
     @FXML
     private void clickOnImageBack() {
         SceneChanger sceneChanger = new SceneChanger();
-        imageBack.getScene().getWindow().hide();
         sceneChanger.changeScene();
     }
 
     @FXML
     private void clickOnImageHome() {
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
-        homeImage.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Menu.fxml");
     }
 
@@ -80,7 +78,7 @@ public class BrandController {
     @FXML
     private int deleteBrand() throws SQLException, IOException {
         if (brandTable.getSelectionModel().getSelectedItem() == null) {
-            exeptionScene.createExeptionScene("Не было выбрано поле для удаления.");
+            exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
             return 1;
         }
         Brand brand = brandTable.getSelectionModel().getSelectedItem();
@@ -100,7 +98,7 @@ public class BrandController {
     @FXML
     private int updateBrand() throws SQLException, IOException {
         if (brandTable.getSelectionModel().getSelectedItem() == null) {
-            exeptionScene.createExeptionScene("Не было выбрано поле для изменения.");
+            exeptionScene.createExeptionScene("Не был выбран элемент для редактирования.");
             return 1;
         }
         if (brandField.getText().isEmpty() || brandField.getText().replace(" ", "") == "") {

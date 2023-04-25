@@ -37,11 +37,9 @@ public class SceneChanger {
                 scenesList.remove(scenesList.size() - 1);
             }
         }
-        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/ico.png");
         try {
             Parent root = FXMLLoader.load(Main.class.getResource(nameScene));
             stage.setScene(new Scene(root));
-            stage.getIcons().add(ico);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,9 +47,7 @@ public class SceneChanger {
     }
 
     public void changeScene(){
-        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/ico.png");
         stage.setScene(scenesList.get(scenesList.size()-1));
-        stage.getIcons().add(ico);
         stage.show();
         for (int i = 0; i < 2; i ++){
             if(scenesList.size() > 1){
@@ -61,32 +57,34 @@ public class SceneChanger {
     }
 
     public void createExeptionScene(String message) throws IOException {
-        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/yzbek.jpg");
         exeptionController.setMessage(message);
         Parent root = FXMLLoader.load(Main.class.getResource("Scenes/Exeption.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.getIcons().add(ico);
         stage.show();
     }
 
     public void createDeleteScene(String message) throws IOException {
-        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/yzbek.jpg");
-        deleteAndEditController.setMessage("Вы уверены что хотите удалить\n" + message);
+        deleteAndEditController.setMessage("Вы уверены что хотите удалить\n\"" + message + "\"");
         Parent root = FXMLLoader.load(Main.class.getResource("Scenes/DeleteAndEditForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.getIcons().add(ico);
         stage.showAndWait();
     }
 
     public void createEditScene(String beforeUpdate, String afterUpdate) throws IOException{
-        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/yzbek.jpg");
         deleteAndEditController.setMessage("Вы уверены что хотите изменить \"" + beforeUpdate + "\" на \"" + afterUpdate + "\"");
         Parent root = FXMLLoader.load(Main.class.getResource("Scenes/DeleteAndEditForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.getIcons().add(ico);
+        stage.showAndWait();
+    }
+
+    public void createEditHardScene(String id) throws IOException {
+        deleteAndEditController.setMessage("Вы уверены что хотите изменить элемент с ID: " + id);
+        Parent root = FXMLLoader.load(Main.class.getResource("Scenes/DeleteAndEditForm.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
         stage.showAndWait();
     }
 }

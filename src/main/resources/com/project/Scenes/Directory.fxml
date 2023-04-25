@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,27 +11,27 @@
     <children>
         <AnchorPane layoutY="127.0" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #fafafa;">
             <children>
-                <Label layoutX="738.0" layoutY="1004.0" text="By: Шатохин">
+                <Label layoutX="726.0" layoutY="1008.0" stylesheets="@../Styles/text.css" text="By: Шатохин">
                     <font>
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelMarks" layoutX="63.0" layoutY="118.0" onMouseClicked="#clickOnlabelMarks" text="1. Марки ТС" textFill="#4770c3">
+                <Label fx:id="labelMarks" layoutX="63.0" layoutY="118.0" onMouseClicked="#clickOnlabelMarks" stylesheets="@../Styles/label.css" text="1. Марки ТС" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelViolations" layoutX="63.0" layoutY="207.0" onMouseClicked="#clickOnlabelViolation" text="2. Нарушения" textFill="#4770c3">
+                <Label fx:id="labelViolations" layoutX="63.0" layoutY="207.0" onMouseClicked="#clickOnlabelViolation" stylesheets="@../Styles/label.css" text="2. Нарушения" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelColors" layoutX="63.0" layoutY="301.0" onMouseClicked="#clickOnlabelColor" text="3. Цвета" textFill="#4770c3">
+                <Label fx:id="labelColors" layoutX="63.0" layoutY="301.0" onMouseClicked="#clickOnlabelColor" stylesheets="@../Styles/label.css" text="3. Цвета" textFill="#4770c3">
                     <font>
                         <Font size="40.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelStatus" layoutX="63.0" layoutY="391.0" onMouseClicked="#clickOnlabelStatus" text="4. Статусы" textFill="#4770c3">
+                <Label fx:id="labelStatus" layoutX="63.0" layoutY="391.0" onMouseClicked="#clickOnlabelStatus" stylesheets="@../Styles/label.css" text="4. Статусы" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>
@@ -45,24 +46,24 @@
                         <Image url="@../Images/Wand.png" />
                     </image>
                 </ImageView>
-            <Label fx:id="labelTypeOfResponsibility" layoutX="63.0" layoutY="480.0" onMouseClicked="#clickOnlabelResponsibility" text="5. Виды ответственности" textFill="#4770c3">
+            <Label fx:id="labelTypeOfResponsibility" layoutX="63.0" layoutY="480.0" onMouseClicked="#clickOnlabelResponsibility" stylesheets="@../Styles/label.css" text="5. Виды ответственности" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelRegions" layoutX="63.0" layoutY="566.0" onMouseClicked="#clickOnlabelRegions" text="6. Регионы" textFill="#4770c3">
+            <Label fx:id="labelRegions" layoutX="63.0" layoutY="566.0" onMouseClicked="#clickOnlabelRegions" stylesheets="@../Styles/label.css" text="6. Регионы" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelGroupOfResponsibility" layoutX="62.0" layoutY="645.0" onMouseClicked="#clickOnlabelGroups" text="7. Группы ответственности" textFill="#4770c3">
+            <Label fx:id="labelGroupOfResponsibility" layoutX="62.0" layoutY="645.0" onMouseClicked="#clickOnlabelGroups" stylesheets="@../Styles/label.css" text="7. Группы ответственности" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
             </children>
         </AnchorPane>
-        <Label layoutX="410.0" layoutY="21.0" text="Меню выбора справочника" textFill="WHITE">
+        <Label layoutX="347.0" layoutY="26.0" stylesheets="@../Styles/text.css" text="Меню выбора справочника" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="57.0" />
             </font>
@@ -71,11 +72,17 @@
             <image>
                 <Image url="@../Images/Back.png" />
             </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </ImageView>
         <ImageView fx:id="homeImage" fitHeight="130.0" fitWidth="124.0" layoutX="14.0" onMouseClicked="#clickOnImageHome" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../Images/home.png" />
             </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </ImageView>
     </children>
 </AnchorPane>

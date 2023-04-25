@@ -22,14 +22,12 @@ public class MenuController {
     @FXML
     private void clickOnLabelForm(){
         SceneChanger sceneChanger = new SceneChanger(labelToForms.getScene());
-        labelToForms.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Forms.fxml");
     }
 
     @FXML
     private void clickOnLabelDirectory(){
         SceneChanger sceneChanger = new SceneChanger(labelToDirectory.getScene());
-        labelToDirectory.getScene().getWindow().hide();
         sceneChanger.changeScene("Scenes/Directory.fxml");
     }
 }
