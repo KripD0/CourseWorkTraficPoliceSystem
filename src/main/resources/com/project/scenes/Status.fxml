@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1198.0" prefWidth="1631.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.controllers.StatusController">
+    <children>
+        <AnchorPane layoutY="127.0" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #fafafa;">
+            <children>
+                <Label layoutX="741.0" layoutY="1008.0" stylesheets="@../styles/text.css" text="By: Шатохин">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="225.0" fitWidth="349.0" layoutX="14.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Cap.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="236.0" fitWidth="297.0" layoutX="1350.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Wand.png" />
+                    </image>
+                </ImageView>
+                <TableView fx:id="statusTable" prefHeight="769.0" prefWidth="1133.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="191.0" text="ID" />
+                        <TableColumn fx:id="statusColumn" prefWidth="941.0" text="Статус" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+                <Line endX="-115.0" endY="705.0" fill="BLACK" layoutX="1248.0" layoutY="64.0" startX="-115.0" startY="-64.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Line endX="611.0" endY="-15.0" layoutX="1016.0" layoutY="784.0" startX="-1016.0" startY="-15.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Button layoutX="1143.0" layoutY="174.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Добавить" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="violationField" alignment="TOP_CENTER" layoutX="1254.0" layoutY="111.0" prefHeight="30.0" prefWidth="236.0" promptText="Введите  статус" />
+                <Line endX="-1065.0" endY="693.5" fill="BLACK" layoutX="1258.0" layoutY="74.0" startX="-1065.0" startY="-74.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Button layoutX="1405.0" layoutY="174.0" mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Удалить" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1273.0" layoutY="236.0" mnemonicParsing="false" onAction="#update" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Редактировать" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Label layoutX="1296.0" layoutY="14.0" stylesheets="@../styles/text.css" text="Операции">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                </Label>
+                <Line endX="599.0" endY="-452.0" layoutX="1026.0" layoutY="794.0" startX="108.5" startY="-452.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Label layoutX="1334.0" layoutY="367.0" stylesheets="@../styles/text.css" text="Поиск">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="findField" alignment="TOP_CENTER" layoutX="1262.0" layoutY="423.0" prefHeight="30.0" prefWidth="236.0" promptText="Введите  статус" />
+                <Button layoutX="1158.0" layoutY="522.0" mnemonicParsing="false" onAction="#findByString" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Найти" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1405.0" layoutY="522.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Очистить поиск" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Label layoutX="675.0" layoutY="26.0" stylesheets="@../styles/text.css" text="Статусы" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="57.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="imageBack" fitHeight="121.0" fitWidth="124.0" layoutX="149.0" layoutY="2.0" onMouseClicked="#clickOnImageBack" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/Back.png" />
+            </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <ImageView fx:id="homeImage" fitHeight="130.0" fitWidth="124.0" layoutX="14.0" onMouseClicked="#clickOnImageHome" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/home.png" />
+            </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <Line endX="603.0" endY="-667.0" layoutX="1026.0" layoutY="794.0" startX="-1026.0" startY="-667.0" stroke="#0083ff" strokeWidth="3.0" />
+    </children>
+</AnchorPane>

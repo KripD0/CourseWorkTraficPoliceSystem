@@ -1,6 +1,6 @@
 package com.project;
 
-import com.project.Auxiliary.SceneChanger;
+import com.project.auxiliary.SceneChanger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,10 +15,11 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Scenes/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 1200);
         stage.setTitle("Информационная система ГИБДД");
-        Image ico = new Image("D:/Java/CourseWorkTraficPoliceSystem/src/main/resources/com/project/Images/ico.png");
+        Image ico = new Image(getClass().getResourceAsStream("Images/ico.png"));
         stage.getIcons().add(ico);
         stage.setScene(scene);
         stage.show();
+        stage.centerOnScreen();
         SceneChanger sceneChanger = new SceneChanger(stage, stage.getScene());
     }
 

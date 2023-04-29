@@ -6,8 +6,10 @@ module com.project {
     requires java.naming;
 
     opens com.project to javafx.fxml;
+    exports com.project.controllers;
+    exports com.project.classesForTables;
+    opens com.project.controllers to javafx.fxml;
     exports com.project;
-    exports com.project.Controllers;
-    exports com.project.ClassesForTables;
-    opens com.project.Controllers to javafx.fxml;
+    exports com.project.auxiliary;
+    opens com.project.auxiliary to javafx.fxml;
 }
