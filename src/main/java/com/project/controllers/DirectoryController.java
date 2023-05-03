@@ -32,6 +32,9 @@ public class DirectoryController {
     private Label labelViolations;
 
     @FXML
+    private Label labelCategory;
+
+    @FXML
     private void clickOnlabelMarks() {
         SceneChanger sceneChanger = new SceneChanger(labelMarks.getScene());
         sceneChanger.changeScene("scenes/Brands.fxml");
@@ -74,13 +77,19 @@ public class DirectoryController {
     }
 
     @FXML
-    private void clickOnImageBack() {
+    private void clickOnlabelCategory(){
+        SceneChanger sceneChanger = new SceneChanger(labelCategory.getScene());
+        sceneChanger.changeScene("scenes/Category.fxml");
+    }
+
+    @FXML
+    public void clickOnImageBack() {
         SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome() {
+    public void clickOnImageHome() {
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         sceneChanger.changeScene("scenes/Menu.fxml");
     }

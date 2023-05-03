@@ -1,7 +1,8 @@
 package com.project.controllers;
 
 import com.project.auxiliary.SceneChanger;
-import com.project.classesForTables.ResponsibilityGroup;
+import com.project.classesForTables.Brand;
+import com.project.classesForTables.Category;
 import com.project.dbUtil.DbConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,36 +15,33 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
-public class ResponsibilityGroupController {
+public class CategoryController {
 
     private final Connection connection = DbConnection.buildConnection();
 
     private final SceneChanger exeptionScene = new SceneChanger();
 
     @FXML
-    private TextField findField;
+    private TableView<Category> brandTable;
 
     @FXML
-    private TextField violationField;
+    private TableColumn<Category, String> brandColumn;
+
+    @FXML
+    private TableColumn<Category, Integer> idColumn;
+
+    @FXML
+    private TextField brandField;
+
+    @FXML
+    private TextField findField;
 
     @FXML
     private ImageView homeImage;
 
-    @FXML
-    private TableColumn<ResponsibilityGroup, Integer> idColumn;
-
-    @FXML
-    private TableColumn<ResponsibilityGroup, String> groupColumn;
-
-    @FXML
-    private TableView<ResponsibilityGroup> groupTable;
-
-    public ResponsibilityGroupController() throws SQLException {
+    public CategoryController() throws SQLException {
     }
 
     @FXML
@@ -64,42 +62,42 @@ public class ResponsibilityGroupController {
     }
 
     @FXML
-    private void add() throws SQLException, IOException {
-        if (violationField.getText().replace(" ", "").isEmpty()) {
+    private void addBrand() throws SQLException, IOException {
+        if (brandField.getText().replace(" ", "").isEmpty()) {
             exeptionScene.createExeptionScene("Не было заполнено поле для добавления.");
         } else {
-            String addBrand = "INSERT INTO responsibility_group(name) VALUES (?)";
+            String addBrand = "INSERT INTO category(name) VALUES (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(addBrand);
-            preparedStatement.setString(1, violationField.getText());
+            preparedStatement.setString(1, brandField.getText());
             preparedStatement.executeUpdate();
             loadTable();
-            violationField.clear();
+            brandField.clear();
         }
     }
 
     @FXML
-    private int delete() throws SQLException, IOException {
-        if (groupTable.getSelectionModel().getSelectedItem() == null) {
+    private int deleteBrand() throws SQLException, IOException {
+        if (brandTable.getSelectionModel().getSelectedItem() == null) {
             exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
             return 1;
         }
         String checkSelect = """
-                SELECT * FROM type_of_responsibility WHERE group_id = ?""";
+                SELECT * FROM drivers_license WHERE category_id = ?""";
         PreparedStatement check = connection.prepareStatement(checkSelect);
-        check.setLong(1, Long.parseLong(String.valueOf(groupTable.getSelectionModel().getSelectedItem().getId())));
+        check.setLong(1, Long.parseLong(String.valueOf(brandTable.getSelectionModel().getSelectedItem().getId())));
         ResultSet resultSet = check.executeQuery();
         if(resultSet.next()){
             exeptionScene.createExeptionScene("Удаление данного элемента нарушает целостность базы данных.");
             return 1;
         }
-        ResponsibilityGroup responsibilityGroup = groupTable.getSelectionModel().getSelectedItem();
-        Stage stage = exeptionScene.createDeleteScene(responsibilityGroup.getName());
+        Category category = brandTable.getSelectionModel().getSelectedItem();
+        Stage stage = exeptionScene.createDeleteScene(category.getName());
         while (stage.isShowing()) {
         }
         if (DeleteAndEditController.needDelete) {
-            String deleteBrand = "DELETE FROM responsibility_group WHERE id = ?";
+            String deleteBrand = "DELETE FROM category WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(deleteBrand);
-            preparedStatement.setInt(1, responsibilityGroup.getId());
+            preparedStatement.setInt(1, category.getId());
             preparedStatement.executeUpdate();
             loadTable();
         }
@@ -107,46 +105,46 @@ public class ResponsibilityGroupController {
     }
 
     @FXML
-    private int update() throws SQLException, IOException {
-        if (groupTable.getSelectionModel().getSelectedItem() == null) {
+    private int updateBrand() throws SQLException, IOException {
+        if (brandTable.getSelectionModel().getSelectedItem() == null) {
             exeptionScene.createExeptionScene("Не был выбран элемент для редактирования.");
             return 1;
         }
-        if (violationField.getText().isEmpty() || violationField.getText().replace(" ", "") == "") {
+        if (brandField.getText().isEmpty() || brandField.getText().replace(" ", "") == "") {
             exeptionScene.createExeptionScene("Поле для изменения не было заполнено.");
             return 1;
         }
-        ResponsibilityGroup responsibilityGroup = groupTable.getSelectionModel().getSelectedItem();
-        Stage stage = exeptionScene.createEditScene(responsibilityGroup.getName(), violationField.getText());
+        Category category = brandTable.getSelectionModel().getSelectedItem();
+        Stage stage = exeptionScene.createEditScene(category.getName(), brandField.getText());
         while (stage.isShowing()) {
         }
         if (DeleteAndEditController.needDelete) {
-            String updateBrand = "UPDATE responsibility_group SET name = ? WHERE id = ?";
+            String updateBrand = "UPDATE category SET name = ? WHERE id = ?";
             PreparedStatement preparedUpdate = connection.prepareStatement(updateBrand);
-            preparedUpdate.setString(1, violationField.getText());
-            preparedUpdate.setInt(2, responsibilityGroup.getId());
+            preparedUpdate.setString(1, brandField.getText());
+            preparedUpdate.setInt(2, category.getId());
             preparedUpdate.executeUpdate();
             loadTable();
         }
-        violationField.clear();
+        brandField.clear();
         return 1;
     }
 
     @FXML
     public void findByString() throws SQLException{
-        ObservableList<ResponsibilityGroup> list = FXCollections.observableArrayList();
-        String getTableBrands = "SELECT * FROM responsibility_group WHERE name LIKE ? ORDER BY id";
+        ObservableList<Category> listBrand = FXCollections.observableArrayList();
+        String getTableBrands = "SELECT * FROM category WHERE name LIKE ? ORDER BY id";
         String finalString;
         finalString = "%" + findField.getText().trim() + "%";
         PreparedStatement preparedStatement = connection.prepareStatement(getTableBrands);
         preparedStatement.setString(1, finalString);
         ResultSet resultSet = preparedStatement.executeQuery();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        groupColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        brandColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         while (resultSet.next()) {
-            list.add(new ResponsibilityGroup(resultSet.getInt(1), resultSet.getString(2)));
+            listBrand.add(new Category(resultSet.getInt(1), resultSet.getString(2)));
         }
-        groupTable.setItems(list);
+        brandTable.setItems(listBrand);
     }
 
     @FXML
@@ -155,17 +153,17 @@ public class ResponsibilityGroupController {
         loadTable();
     }
 
-    private void loadTable() throws SQLException {
-        ObservableList<ResponsibilityGroup> listViolation = FXCollections.observableArrayList();
-        String getTableBrands = "SELECT * FROM responsibility_group ORDER BY id";
+    public void loadTable() throws SQLException {
+        ObservableList<Category> listBrand = FXCollections.observableArrayList();
+        String getTableBrands = "SELECT * FROM category ORDER BY id";
         PreparedStatement preparedStatement = connection.prepareStatement(getTableBrands);
         ResultSet resultSet = preparedStatement.executeQuery();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        groupColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        while (resultSet.next()){
-            listViolation.add(new ResponsibilityGroup(resultSet.getInt(1), resultSet.getString(2)));
+        brandColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        while (resultSet.next()) {
+            listBrand.add(new Category(resultSet.getInt(1), resultSet.getString(2)));
         }
-        groupTable.setItems(listViolation);
+        brandTable.setItems(listBrand);
     }
 }
 

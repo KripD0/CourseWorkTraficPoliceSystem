@@ -111,7 +111,7 @@ public class DecreeController {
         preparedStatement.setString(6, statusCombobox.getSelectionModel().getSelectedItem());
         preparedStatement.setString(7, responsibilityCombobox.getSelectionModel().getSelectedItem());
         preparedStatement.executeUpdate();
-        loadTable();
+        clearButton();
         return 1;
     }
 
@@ -128,13 +128,13 @@ public class DecreeController {
     }
 
     @FXML
-    private void clickOnImageBack() {
+    public void clickOnImageBack(){
         SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome() {
+    public void clickOnImageHome() {
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         sceneChanger.changeScene("scenes/Menu.fxml");
     }
@@ -160,7 +160,7 @@ public class DecreeController {
     }
 
     @FXML
-    private int findByString() throws IOException, SQLException {
+    public int findByString() throws IOException, SQLException {
         if (dlnCombobox.getSelectionModel().getSelectedIndex() == 0 && regionCombobox.getSelectionModel().getSelectedIndex() == 0 &&
                 responsibilityCombobox.getSelectionModel().getSelectedIndex() == 0 && statusCombobox.getSelectionModel().getSelectedIndex() == 0 &&
                 violationCombobox.getSelectionModel().getSelectedIndex() == 0 && datePicker.getValue() == null && tsCombobox.getSelectionModel().getSelectedIndex() == 0) {
@@ -256,9 +256,8 @@ public class DecreeController {
             preparedStatement.setString(7, decree.getResponsibility());
             preparedStatement.setInt(8, decree.getId());
             preparedStatement.executeUpdate();
-            loadTable();
+            clearButton();
         }
-        clearButton();
         return 1;
     }
 
@@ -367,7 +366,7 @@ public class DecreeController {
 
     private void loadResponsibility() throws SQLException {
         ObservableList<String> list = FXCollections.observableArrayList();
-        list.add("Выберите нарушение");
+        list.add("Выберите ответственность");
         String sqlquerry = "SELECT name FROM type_of_responsibility";
         PreparedStatement preparedStatement = connection.prepareStatement(sqlquerry);
         ResultSet resultSet = preparedStatement.executeQuery();

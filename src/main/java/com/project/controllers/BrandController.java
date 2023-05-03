@@ -49,13 +49,13 @@ public class BrandController {
     }
 
     @FXML
-    private void clickOnImageBack() {
+    public void clickOnImageBack() throws IOException {
         SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome() {
+    public void clickOnImageHome() {
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         sceneChanger.changeScene("scenes/Menu.fxml");
     }
@@ -78,6 +78,15 @@ public class BrandController {
     private int deleteBrand() throws SQLException, IOException {
         if (brandTable.getSelectionModel().getSelectedItem() == null) {
             exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
+            return 1;
+        }
+        String checkSelect = """
+                SELECT * FROM vehicle WHERE brand_id = ?""";
+        PreparedStatement check = connection.prepareStatement(checkSelect);
+        check.setLong(1, Long.parseLong(String.valueOf(brandTable.getSelectionModel().getSelectedItem().getId())));
+        ResultSet resultSet = check.executeQuery();
+        if(resultSet.next()){
+            exeptionScene.createExeptionScene("Удаление данного элемента нарушает целостность базы данных.");
             return 1;
         }
         Brand brand = brandTable.getSelectionModel().getSelectedItem();

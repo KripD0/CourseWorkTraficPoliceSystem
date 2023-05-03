@@ -30,4 +30,10 @@ public class MenuController {
         SceneChanger sceneChanger = new SceneChanger(labelToDirectory.getScene());
         sceneChanger.changeScene("scenes/Directory.fxml");
     }
+
+    @FXML
+    private void clickOnLabelRepot(){
+        SceneChanger sceneChanger = new SceneChanger(labelToReport.getScene());
+        sceneChanger.changeScene("scenes/Reports.fxml");
+    }
 }

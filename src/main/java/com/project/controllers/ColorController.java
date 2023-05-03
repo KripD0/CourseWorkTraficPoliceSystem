@@ -53,13 +53,13 @@ public class ColorController {
     }
 
     @FXML
-    private void clickOnImageBack(){
+    public void clickOnImageBack(){
         SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome(){
+    public void clickOnImageHome(){
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         sceneChanger.changeScene("scenes/Menu.fxml");
     }
@@ -82,6 +82,15 @@ public class ColorController {
     private int delete() throws SQLException, IOException {
         if (colorTable.getSelectionModel().getSelectedItem() == null) {
             exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
+            return 1;
+        }
+        String checkSelect = """
+                SELECT * FROM vehicle WHERE color_id = ?""";
+        PreparedStatement check = connection.prepareStatement(checkSelect);
+        check.setLong(1, Long.parseLong(String.valueOf(colorTable.getSelectionModel().getSelectedItem().getId())));
+        ResultSet resultSet = check.executeQuery();
+        if(resultSet.next()){
+            exeptionScene.createExeptionScene("Удаление данного элемента нарушает целостность базы данных.");
             return 1;
         }
         Violation violation = colorTable.getSelectionModel().getSelectedItem();

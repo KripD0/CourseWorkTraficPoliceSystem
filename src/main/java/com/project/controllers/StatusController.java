@@ -54,13 +54,13 @@ public class StatusController {
     }
 
     @FXML
-    private void clickOnImageBack(){
+    public void clickOnImageBack(){
         SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome(){
+    public void clickOnImageHome(){
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         sceneChanger.changeScene("scenes/Menu.fxml");
     }
@@ -83,6 +83,15 @@ public class StatusController {
     private int delete() throws SQLException, IOException {
         if (statusTable.getSelectionModel().getSelectedItem() == null) {
             exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
+            return 1;
+        }
+        String checkSelect = """
+                SELECT * FROM decree WHERE status_id = ?""";
+        PreparedStatement check = connection.prepareStatement(checkSelect);
+        check.setLong(1, Long.parseLong(String.valueOf(statusTable.getSelectionModel().getSelectedItem().getId())));
+        ResultSet resultSet = check.executeQuery();
+        if(resultSet.next()){
+            exeptionScene.createExeptionScene("Удаление данного элемента нарушает целостность базы данных.");
             return 1;
         }
         Violation violation = statusTable.getSelectionModel().getSelectedItem();

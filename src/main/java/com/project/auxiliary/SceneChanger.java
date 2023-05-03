@@ -11,12 +11,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SceneChanger {
 
     private static Stage stage;
     private final static List<Scene> scenesList = new ArrayList<>();
+
+    private final static List<String> nameList = new ArrayList<>(Arrays.asList("scenes/Menu.fxml"));
 
     private final Image image = new Image(Main.class.getResourceAsStream("images/ico.png"));
 
@@ -35,9 +38,11 @@ public class SceneChanger {
     }
 
     public void changeScene(String nameScene){
+        nameList.add(nameScene);
         if(nameScene.equals("scenes/Menu.fxml")){
             while (scenesList.size() > 1){
                 scenesList.remove(scenesList.size() - 1);
+                nameList.remove(nameList.size() - 1);
             }
         }
         try {
@@ -51,12 +56,18 @@ public class SceneChanger {
     }
 
     public void changeScene(){
-        stage.setScene(scenesList.get(scenesList.size()-1));
-        stage.show();
-        stage.centerOnScreen();
+        try {
+            Parent root = FXMLLoader.load(Main.class.getResource(nameList.get(nameList.size() - 2)));
+            stage.setScene(new Scene(root));
+            stage.show();
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         for (int i = 0; i < 1; i ++){
             if(scenesList.size() > 1){
                 scenesList.remove(scenesList.size() - 1);
+                nameList.remove(nameList.size() - 1);
             }
         }
     }

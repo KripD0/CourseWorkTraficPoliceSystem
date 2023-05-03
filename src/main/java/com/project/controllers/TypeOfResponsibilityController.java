@@ -86,6 +86,15 @@ public class TypeOfResponsibilityController {
             exeptionScene.createExeptionScene("Не был выбран элемент для удаления.");
             return 1;
         }
+        String checkSelect = """
+                SELECT * FROM decree WHERE  responsibility_id = ?""";
+        PreparedStatement check = connection.prepareStatement(checkSelect);
+        check.setLong(1, Long.parseLong(String.valueOf(typeOfResponsibilityTable.getSelectionModel().getSelectedItem().getId())));
+        ResultSet resultSet = check.executeQuery();
+        if(resultSet.next()){
+            exeptionScene.createExeptionScene("Удаление данного элемента нарушает целостность базы данных.");
+            return 1;
+        }
         TypeOfResponsibility typeOfResponsibility = typeOfResponsibilityTable.getSelectionModel().getSelectedItem();
         Stage stage = exeptionScene.createDeleteScene(typeOfResponsibility.getName());
         while (stage.isShowing()) {
@@ -138,7 +147,7 @@ public class TypeOfResponsibilityController {
     }
 
     @FXML
-    private void findByString() throws SQLException {
+    public void findByString() throws SQLException {
         loadTable();
         ObservableSet<TypeOfResponsibility> removeset = FXCollections.observableSet();
         for (TypeOfResponsibility obj : typeOfResponsibilityTable.getItems()) {
@@ -153,20 +162,20 @@ public class TypeOfResponsibilityController {
     }
 
     @FXML
-    private void clearButton() throws SQLException {
+    public void clearButton() throws SQLException {
         findField.clear();
         findCombobox.getSelectionModel().selectFirst();
         loadTable();
     }
 
     @FXML
-    private void clickOnImageBack() {
+    public void clickOnImageBack() {
         SceneChanger sceneChanger = new SceneChanger();
         sceneChanger.changeScene();
     }
 
     @FXML
-    private void clickOnImageHome() {
+    public void clickOnImageHome() {
         SceneChanger sceneChanger = new SceneChanger(homeImage.getScene());
         sceneChanger.changeScene("scenes/Menu.fxml");
     }

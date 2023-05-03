@@ -25,12 +25,12 @@
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelToDirectory" layoutX="63.0" layoutY="207.0" onMouseClicked="#clickOnLabelDirectory" stylesheets="@../styles/label.css" text="2. Открыть меню справочников" textFill="#4770c3">
+            <Label fx:id="labelToDirectory" layoutX="70.0" layoutY="207.0" onMouseClicked="#clickOnLabelDirectory" stylesheets="@../styles/label.css" text="2. Открыть меню справочников" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelToReport" layoutX="63.0" layoutY="301.0" stylesheets="@../styles/label.css" text="3. Открыть меню отчетов" textFill="#4770c3">
+            <Label fx:id="labelToReport" layoutX="70.0" layoutY="301.0" onMouseClicked="#clickOnLabelRepot" stylesheets="@../styles/label.css" text="3. Открыть меню отчетов" textFill="#4770c3">
                <font>
                   <Font name="System Italic" size="40.0" />
                </font>

@@ -16,26 +16,21 @@
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelDriverRegistration" layoutX="70.0" layoutY="116.0" stylesheets="@../styles/label.css" text="1. Регистрация водителей" textFill="#4770c3">
+                <Label fx:id="labelDriverRegistration" layoutX="70.0" layoutY="116.0" onMouseClicked="#clickOnlabelDrivers" stylesheets="@../styles/label.css" text="1. Регистрация водителей" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelRegistrationCars" layoutX="63.0" layoutY="207.0" stylesheets="@../styles/label.css" text="2. Регистрация транспортных средств" textFill="#4770c3">
+                <Label fx:id="labelRegistrationCars" layoutX="70.0" layoutY="207.0" onMouseClicked="#clickOnLabelVehicle" stylesheets="@../styles/label.css" text="2. Регистрация транспортных средств" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelRegistrationsOfDesicions" layoutX="63.0" layoutY="301.0" onMouseClicked="#clickOnLabelDecree" stylesheets="@../styles/label.css" text="3. Регистрация постановлений" textFill="#4770c3">
+                <Label fx:id="labelRegistrationsOfDesicions" layoutX="70.0" layoutY="301.0" onMouseClicked="#clickOnLabelDecree" stylesheets="@../styles/label.css" text="3. Регистрация постановлений" textFill="#4770c3">
                     <font>
-                        <Font size="40.0" />
+                        <Font name="System Italic" size="40.0" />
                     </font>
                 </Label>
-            <Label fx:id="labelVewwu" layoutX="63.0" layoutY="392.0" stylesheets="@../styles/label.css" text="4. Просмотр Водительских Удостоверений" textFill="#4770c3">
-               <font>
-                  <Font name="System Italic" size="40.0" />
-               </font>
-            </Label>
                 <ImageView fitHeight="225.0" fitWidth="349.0" layoutX="14.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/Cap.png" />

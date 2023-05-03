@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1290.0" prefWidth="1891.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.controllers.DriversController">
+    <children>
+        <AnchorPane layoutX="1.0" layoutY="129.0" prefHeight="1162.0" prefWidth="1891.0" style="-fx-background-color: #fafafa;">
+            <children>
+                <Label layoutX="872.0" layoutY="1120.0" stylesheets="@../styles/text.css" text="By: Шатохин">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="225.0" fitWidth="349.0" layoutX="7.0" layoutY="936.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Cap.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="236.0" fitWidth="297.0" layoutX="1655.0" layoutY="925.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Wand.png" />
+                    </image>
+                </ImageView>
+                <TableView fx:id="driverTable" layoutY="35.0" prefHeight="578.0" prefWidth="1891.0">
+                    <columns>
+                        <TableColumn fx:id="fioColumn" prefWidth="269.0" text="ФИО" />
+                        <TableColumn fx:id="passportColumn" prefWidth="181.0" text="Пасспорт" />
+                        <TableColumn fx:id="telephoneColumn" prefWidth="201.0" text="Номер телефона" />
+                        <TableColumn fx:id="addressColumn" prefWidth="339.0" text="Аддрес регистрации" />
+                        <TableColumn fx:id="dlnNumberColumn" prefWidth="401.0" text="Номер ВУ" />
+                        <TableColumn fx:id="dateColumn" prefWidth="209.0" text="Дата выдачи ВУ" />
+                        <TableColumn fx:id="departamentColumn" prefWidth="162.0" text="Отдел ГИБДД" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="128.0" text="Категория" />
+                    </columns>
+                </TableView>
+                <Line endX="-595.121337890625" endY="469.0" fill="BLACK" layoutX="1248.0" layoutY="140.0" startX="-595.121337890625" startY="-103.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Line endX="878.0" endY="-206.0" layoutX="1013.0" layoutY="817.0" startX="-1016.0" startY="-206.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Button layoutX="511.0" layoutY="820.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Добавить" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Line endX="-988.121337890625" endY="532.878662109375" fill="BLACK" layoutX="1258.0" layoutY="76.0" startX="-988.121337890625" startY="-39.5" stroke="#0083ff" strokeWidth="3.0" />
+                <Button layoutX="844.0" layoutY="820.0" mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Удалить" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1165.0" layoutY="820.0" mnemonicParsing="false" onAction="#update" prefHeight="32.0" prefWidth="197.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Редактировать" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="659.0" layoutY="890.0" mnemonicParsing="false" onAction="#findByString" prefHeight="39.0" prefWidth="227.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Применить фильтр" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1001.0" layoutY="890.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="39.0" prefWidth="227.0" style="-fx-background-color: #F39C63;" stylesheets="@../styles/button.css" text="Очистить фильтр" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Line endX="-816.121337890625" endY="430.0" fill="BLACK" layoutX="1268.0" layoutY="181.0" startX="-816.121337890625" startY="-146.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Line endX="-270.121337890625" endY="466.0" fill="BLACK" layoutX="1259.0" layoutY="145.0" startX="-270.121337890625" startY="-110.0" stroke="#0083ff" strokeWidth="3.0" />
+                <Line endX="123.0" endY="497.878662109375" fill="BLACK" layoutX="1268.0" layoutY="112.0" startX="123.0" startY="-73.878662109375" stroke="#0083ff" strokeWidth="3.0" />
+                <Line endX="330.878662109375" endY="397.0" fill="BLACK" layoutX="1268.0" layoutY="212.0" startX="330.878662109375" startY="-176.5" stroke="#0083ff" strokeWidth="3.0" />
+                <DatePicker fx:id="datePicker" editable="false" layoutX="1236.0" layoutY="654.0" prefHeight="33.0" prefWidth="174.0" />
+                <Button layoutX="1772.0" layoutY="-3.0" mnemonicParsing="false" onMouseClicked="#clickOnAddCategory" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #0080ff;" stylesheets="@../styles/button.css" text="Добавить " textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Button>
+                <Label layoutX="367.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Номер телефона">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="1054.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Номер ВУ">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="1260.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Дата выдачи">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="1481.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Отдел ГИБДД">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="categoryCombobox" layoutX="1655.0" layoutY="654.0" prefHeight="33.0" prefWidth="184.0" />
+                <Label layoutX="1702.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Категория">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            <Line endX="485.878662109375" endY="401.0" fill="BLACK" layoutX="1278.0" layoutY="210.0" startX="485.878662109375" startY="-173.5" stroke="#0083ff" strokeWidth="3.0" />
+            <TextField fx:id="departamentField" layoutX="1466.0" layoutY="654.0" prefHeight="33.0" prefWidth="149.0" />
+            <TextField fx:id="dlnNumberField" layoutX="1004.0" layoutY="654.0" prefHeight="33.0" prefWidth="184.0" />
+            <TextField fx:id="addressField" layoutX="653.0" layoutY="654.0" prefHeight="33.0" prefWidth="296.0" />
+            <Label layoutX="707.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Аддрес регистрации">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="telephoneField" layoutX="304.0" layoutY="654.0" prefHeight="33.0" prefWidth="296.0" />
+            <TextField fx:id="passportField" layoutX="46.0" layoutY="654.0" prefHeight="33.0" prefWidth="204.0" />
+            <Label layoutX="108.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Пасспорт">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="surnameField" layoutX="431.0" layoutY="742.0" prefHeight="33.0" prefWidth="204.0" />
+            <TextField fx:id="nameField" layoutX="758.0" layoutY="742.0" prefHeight="33.0" prefWidth="204.0" />
+            <TextField fx:id="secondSurnameField" layoutX="1070.0" layoutY="742.0" prefHeight="33.0" prefWidth="204.0" />
+            <Label layoutX="493.0" layoutY="709.0" stylesheets="@../styles/text.css" text="Фамилия">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="836.0" layoutY="709.0" stylesheets="@../styles/text.css" text="Имя">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="1132.0" layoutY="709.0" stylesheets="@../styles/text.css" text="Отчество">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+        <Label layoutX="555.0" layoutY="25.0" stylesheets="@../styles/text.css" text="Регистрация водителей" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="57.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="imageBack" fitHeight="121.0" fitWidth="124.0" layoutX="149.0" layoutY="2.0" onMouseClicked="#clickOnImageBack" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/Back.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="homeImage" fitHeight="130.0" fitWidth="124.0" layoutX="14.0" onMouseClicked="#clickOnImageHome" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/home.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <Line endX="865.0" endY="-667.0" layoutX="1027.0" layoutY="831.0" startX="-1026.0" startY="-667.0" stroke="#0083ff" strokeWidth="3.0" />
+        <Line endX="871.0" endY="219.0" layoutX="1023.0" layoutY="852.0" startX="-1023.0" startY="219.0" stroke="#0083ff" strokeWidth="3.0" />
+    </children>
+</AnchorPane>
