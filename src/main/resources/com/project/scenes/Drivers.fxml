@@ -113,7 +113,7 @@
             <TextField fx:id="departamentField" layoutX="1466.0" layoutY="654.0" prefHeight="33.0" prefWidth="149.0" />
             <TextField fx:id="dlnNumberField" layoutX="1004.0" layoutY="654.0" prefHeight="33.0" prefWidth="184.0" />
             <TextField fx:id="addressField" layoutX="653.0" layoutY="654.0" prefHeight="33.0" prefWidth="296.0" />
-            <Label layoutX="707.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Аддрес регистрации">
+            <Label layoutX="714.0" layoutY="624.0" stylesheets="@../styles/text.css" text="Адрес регистрации">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

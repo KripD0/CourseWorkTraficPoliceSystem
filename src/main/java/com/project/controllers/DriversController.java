@@ -304,6 +304,15 @@ public class DriversController {
                 return 1;
             }
         }
+        String checkSelect = """
+                SELECT * FROM decree WHERE dln_id = ?""";
+        PreparedStatement check = connection.prepareStatement(checkSelect);
+        check.setLong(1, Long.parseLong(String.valueOf(driverTable.getSelectionModel().getSelectedItem().getDriversLicenseNumber())));
+        ResultSet resultSet = check.executeQuery();
+        if(resultSet.next()){
+            exeptionScene.createExeptionScene("Удалите все записи из формы регистрация постановлений с этим ВУ и повторите попытку.");
+            return 1;
+        }
         boolean flag = false;
         Drivers drivers = driverTable.getSelectionModel().getSelectedItem();
         BigInteger dlnNumber = drivers.getDriversLicenseNumber();

@@ -16,10 +16,6 @@ public class MenuController {
     private Label labelToReport;
 
     @FXML
-    private void initialize(){
-    }
-
-    @FXML
     private void clickOnLabelForm(){
         SceneChanger sceneChanger = new SceneChanger(labelToForms.getScene());
         sceneChanger.changeScene("scenes/Forms.fxml");

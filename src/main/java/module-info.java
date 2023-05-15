@@ -4,6 +4,7 @@ module com.project {
     requires java.sql;
     requires java.naming;
     requires org.postgresql.jdbc;
+    requires java.desktop;
 
     opens com.project to javafx.fxml;
     exports com.project.controllers;

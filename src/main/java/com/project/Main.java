@@ -13,9 +13,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Scenes/Menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1600, 1200);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Информационная система ГИБДД");
-        Image ico = new Image(getClass().getResourceAsStream("Images/ico.png"));
+        Image ico = new Image(getClass().getResourceAsStream("images/ico.png"));
         stage.getIcons().add(ico);
         stage.setScene(scene);
         stage.show();
