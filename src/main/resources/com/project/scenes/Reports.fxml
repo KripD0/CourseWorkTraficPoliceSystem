@@ -16,7 +16,7 @@
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="periodReportlabel" layoutX="70.0" layoutY="116.0" onMouseClicked="#clickOnLabelPeriodReport" stylesheets="@../styles/label.css" text="1. Отчет по нарушениям за период." textFill="#4770c3">
+                <Label fx:id="periodReportlabel" layoutX="70.0" layoutY="116.0" onMouseClicked="#clickOnLabelPeriodReport" stylesheets="@../styles/label.css" text="1.Отчёт по всем нарушениям по регионам за период" textFill="#4770c3">
                     <font>
                         <Font name="System Italic" size="40.0" />
                     </font>

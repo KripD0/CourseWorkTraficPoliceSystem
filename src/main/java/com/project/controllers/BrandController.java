@@ -100,7 +100,8 @@ public class BrandController {
             preparedStatement.executeUpdate();
             loadTable();
         }
-        return 1;
+        return 1
+                ;
     }
 
     @FXML

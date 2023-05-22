@@ -57,7 +57,7 @@
                         <Font name="System Bold Italic" size="18.0" />
                     </font>
                 </Button>
-                <Label layoutX="1307.0" layoutY="14.0" text="Операции">
+                <Label layoutX="1198.0" layoutY="14.0" text="Добавление/Редактировние">
                     <font>
                         <Font name="System Bold" size="26.0" />
                     </font>

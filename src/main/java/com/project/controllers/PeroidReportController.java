@@ -27,7 +27,14 @@ public class PeroidReportController {
     @FXML
     private DatePicker beforeDatepicker;
 
+
     public PeroidReportController() throws SQLException {
+    }
+
+    @FXML
+    public void clickOnImageBack() {
+        SceneChanger sceneChanger = new SceneChanger();
+        sceneChanger.changeScene();
     }
 
     @FXML
@@ -53,7 +60,7 @@ public class PeroidReportController {
                                                     text-align: center;
                                                   }
                                                   table {
-                                                    width: 95%;
+                                                    width: 100%;
                                                     margin: auto;
                                                   }
                                                  \s
@@ -75,9 +82,8 @@ public class PeroidReportController {
                       <body>
                       <table>
                       """);
-            fw.write("<tr><td colspan=\"999\" style= \"border: 0px;\"> Отчёт по нарушениям по регионам. " +
-                    "<br>Дата создания: " + LocalDate.now()
-                    + "<br>Время создания: " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " </td></tr>");
+            fw.write("<tr><td colspan=\"999\" style= \"border: 0px;\"> Отчёт по нарушениям по регионам. " +" </td></tr>");
+            fw.write("<tr><td colspan=\"999\" style= \"border: 0px;\"> Отчет от: " + beforeDatepicker.getValue() + " до: " + afterDatepicker.getValue() + " </td></tr>");
             fw.write("<tr><td style = \"background-color: #1CF4FF; color: #000000; border: 0px \">Номер Водительского удостоверения</td>");
             fw.write("<td style = \"background-color: #1CF4FF; color: #000000; border: 0px \">Нарушение</td>");
             fw.write("<td style = \"background-color: #1CF4FF; color: #000000; border: 0px \">Дата</td>");
@@ -146,6 +152,9 @@ public class PeroidReportController {
             fw.write("<tr><td colspan=\"999\" style = \"background-color: #FFFFFF; color: #FF0000; border: 0px; text-align: center\">");
             fw.write("Итого нарушений " + " : " + rowCount);
             fw.write("</td></tr>");
+            fw.write("<tr><td colspan=\"999\" style= \"border: 0px; text-align: left\">" +
+                    "<br>Дата создания отчета: " + LocalDate.now()
+                    + "<br>Время создания отчета: " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " </td></tr>");
 
             fw.write("""
                     </table>

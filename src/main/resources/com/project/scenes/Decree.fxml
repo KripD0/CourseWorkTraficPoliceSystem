@@ -141,7 +141,7 @@
             </Label>
             </children>
         </AnchorPane>
-        <Label layoutX="477.0" layoutY="25.0" stylesheets="@../styles/text.css" text="Регистрация постановлений" textFill="WHITE">
+        <Label layoutX="691.0" layoutY="25.0" stylesheets="@../styles/text.css" text="Постановления" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="57.0" />
             </font>
