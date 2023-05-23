@@ -5,6 +5,7 @@ module com.project {
     requires java.naming;
     requires org.postgresql.jdbc;
     requires java.desktop;
+    requires static lombok;
 
     opens com.project to javafx.fxml;
     exports com.project.controllers;

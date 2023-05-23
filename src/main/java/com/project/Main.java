@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Scenes/Menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("scenes/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Информационная система ГИБДД");
         Image ico = new Image(getClass().getResourceAsStream("images/ico.png"));
